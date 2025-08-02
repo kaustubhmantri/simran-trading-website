@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simran Trading Company - Pure Ayurvedic Remedies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        .heading-font {
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.9), rgba(255, 153, 51, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><rect fill="%23f5f5dc" width="1000" height="600"/><circle fill="%234CAF50" opacity="0.1" cx="200" cy="150" r="80"/><circle fill="%23FF9933" opacity="0.1" cx="800" cy="400" r="120"/><path fill="%234CAF50" opacity="0.05" d="M0,300 Q250,200 500,300 T1000,300 V600 H0 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #4CAF50;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .active-page {
+            color: #4CAF50;
+        }
+        .active-page::after {
+            width: 100%;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-yellow-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="heading-font text-2xl font-bold text-green-600">
+                            <i class="fas fa-leaf mr-2"></i>Simran Trading
+                        </h1>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link active-page text-gray-800 hover:text-green-600 px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="#about" class="nav-link text-gray-800 hover:text-green-600 px-3 py-2 text-sm font-medium">About Us</a>
+                        <a href="#products" class="nav-link text-gray-800 hover:text-green-600 px-3 py-2 text-sm font-medium">Our Products</a>
+                        <a href="#order" class="nav-link text-gray-800 hover:text-green-600 px-3 py-2 text-sm font-medium">How to Order</a>
+                        <a href="#contact" class="nav-link text-gray-800 hover:text-green-600 px-3 py-2 text-sm font-medium">Contact Us</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-800 hover:text-green-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-800 hover:text-green-600">Home</a>
+                <a href="#about" class="block px-3 py-2 text-gray-800 hover:text-green-600">About Us</a>
+                <a href="#products" class="block px-3 py-2 text-gray-800 hover:text-green-600">Our Products</a>
+                <a href="#order" class="block px-3 py-2 text-gray-800 hover:text-green-600">How to Order</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-800 hover:text-green-600">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <div class="fade-in">
+                <h1 class="heading-font text-5xl md:text-7xl font-bold mb-6">
+                    Pure Ayurvedic Remedies
+                </h1>
+                <p class="text-xl md:text-2xl mb-4">
+                    for Skin, Hair & Body Wellness
+                </p>
+                <p class="text-lg mb-8 opacity-90">
+                    Trusted by Customers for Over 20 Years
+                </p>
+                <button onclick="scrollToProducts()" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105">
+                    Explore Our Products
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center fade-in">
+                <h2 class="heading-font text-4xl font-bold text-gray-800 mb-8">Welcome to Simran Trading Company</h2>
+                <div class="space-y-6 text-lg text-gray-600 leading-relaxed">
+                    <p>
+                        For over two decades, Simran Trading Company has been Nashik's trusted source for authentic Ayurvedic and herbal products. We believe in the ancient wisdom of Ayurveda and its power to heal naturally, without harmful side effects.
+                    </p>
+                    <p>
+                        Our carefully curated collection includes premium skin care solutions, hair care treatments, herbal soaps, and wellness products that have been tested by time and trusted by thousands of satisfied customers across the region.
+                    </p>
+                    <p>
+                        At Simran Trading, quality is our promise. Every product we offer is sourced from authentic manufacturers and undergoes strict quality checks to ensure you receive only the best Ayurvedic remedies for your health and wellness needs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories Preview -->
+    <section class="py-16 bg-yellow-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="heading-font text-4xl font-bold text-gray-800 mb-4">Our Product Categories</h2>
+                <p class="text-xl text-gray-600">Discover our range of authentic Ayurvedic solutions</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="product-card bg-white rounded-xl p-6 text-center shadow-lg cursor-pointer" onclick="scrollToProducts()">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-spa text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">Skin Care</h3>
+                    <p class="text-gray-600">Natural remedies for eczema, psoriasis, and skin wellness</p>
+                </div>
+                <div class="product-card bg-white rounded-xl p-6 text-center shadow-lg cursor-pointer" onclick="scrollToProducts()">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-cut text-2xl text-orange-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">Hair Care</h3>
+                    <p class="text-gray-600">Ayurvedic solutions for hair fall, dandruff, and hair health</p>
+                </div>
+                <div class="product-card bg-white rounded-xl p-6 text-center shadow-lg cursor-pointer" onclick="scrollToProducts()">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-soap text-2xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">Herbal Soaps</h3>
+                    <p class="text-gray-600">100% natural soaps with saffron, turmeric, and herbs</p>
+                </div>
+                <div class="product-card bg-white rounded-xl p-6 text-center shadow-lg cursor-pointer" onclick="scrollToProducts()">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heartbeat text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">Body Wellness</h3>
+                    <p class="text-gray-600">Joint pain relief and overall body wellness products</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="heading-font text-4xl font-bold text-gray-800 mb-4">Why Choose Simran Trading?</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">Trustworthy</h3>
+                    <p class="text-gray-600">20+ years of reliable service and customer satisfaction</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-3xl text-orange-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">100% Ayurvedic</h3>
+                    <p class="text-gray-600">Authentic herbal products with no harmful chemicals</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-rupee-sign text-3xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">Affordable</h3>
+                    <p class="text-gray-600">Quality Ayurvedic products at reasonable prices</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-3xl text-red-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">No Side Effects</h3>
+                    <p class="text-gray-600">Natural healing without harmful side effects</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">Locally Trusted</h3>
+                    <p class="text-gray-600">Nashik's preferred choice for Ayurvedic products</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-award text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">Quality Assured</h3>
+                    <p class="text-gray-600">Strict quality checks on every product we offer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Highlight -->
+    <section class="py-16 bg-green-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="fade-in">
+                    <div class="text-4xl font-bold mb-2">20+</div>
+                    <div class="text-xl">Years of Trust</div>
+                </div>
+                <div class="fade-in">
+                    <div class="text-4xl font-bold mb-2">1000+</div>
+                    <div class="text-xl">Happy Customers</div>
+                </div>
+                <div class="fade-in">
+                    <div class="text-4xl font-bold mb-2">#1</div>
+                    <div class="text-xl">Locally Trusted Brand</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="heading-font text-4xl font-bold text-gray-800 mb-4">About Simran Trading Company</h2>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="fade-in">
+                    <h3 class="heading-font text-2xl font-semibold mb-4 text-green-600">Our Story</h3>
+                    <p class="text-gray-600 mb-4">
+                        Founded over two decades ago, Simran Trading Company began with a simple mission: to make authentic Ayurvedic remedies accessible to everyone in Nashik and surrounding areas. What started as a small venture has grown into one of the region's most trusted names in herbal and Ayurvedic products.
+                    </p>
+                    <p class="text-gray-600">
+                        Our journey has been marked by unwavering commitment to quality, authenticity, and customer satisfaction. We've served over 1000 happy customers, each with their unique wellness journey, and we're proud to have been part of their path to natural healing.
+                    </p>
+                </div>
+                <div class="fade-in">
+                    <div class="bg-green-50 p-8 rounded-xl">
+                        <h4 class="heading-font text-xl font-semibold mb-4">Key Milestones</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-600 mr-3"></i>
+                                <span>Established in early 2000s</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-600 mr-3"></i>
+                                <span>5000+ customers served</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-600 mr-3"></i>
+                                <span>Expanded product range to 50+ items</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-600 mr-3"></i>
+                                <span>Became Nashik's trusted Ayurvedic brand</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="text-center fade-in">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bullseye text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">Our Mission</h3>
+                    <p class="text-gray-600">To promote Ayurvedic lifestyle through affordable, authentic products that enhance natural wellness and healing.</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-eye text-2xl text-orange-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">Our Vision</h3>
+                    <p class="text-gray-600">To become Nashik's most trusted herbal brand, spreading the benefits of Ayurveda to every household.</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-2xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="heading-font text-xl font-semibold mb-2">Our Values</h3>
+                    <p class="text-gray-600">Trust, Authenticity, Transparency, and Customer Wellness guide everything we do.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-16 bg-yellow-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="heading-font text-4xl font-bold text-gray-800 mb-4">Our Products</h2>
+                <p class="text-xl text-gray-600">Authentic Ayurvedic solutions for your wellness needs</p>
+            </div>
+
+            <!-- Skin Care Products -->
+            <div class="mb-16">
+                <h3 class="heading-font text-3xl font-semibold text-green-600 mb-8 text-center">Skin Care Products</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="product-card bg-white rounded-xl p-6 shadow-lg">
+                        <div class="w-full h-48 bg-green-100 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-spa text-4xl text-green-600"></i>
+                        </div>
+                        <h4 class="heading-font text-xl font-semibold mb-2">Jin Sora Ayurvedic Cream</h4>
+                        <p class="text-gray-600 mb-3">Effective treatment for Eczema, Psoriasis, and Itching</p>
+                        <p class="text-orange-600 font-semibold mb-3">MRP: ₹130 (75g)</p>
+                        <button onclick="showProductModal('jin-sora')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                            Know More
+                        </button>
+                    </div>
+                    <div class="product-card bg-white rounded-xl p-6 shadow-lg">
+                        <div class="w-full h-48 bg-pink-100 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-magic text-4xl text-pink-600"></i>
+                        </div>
+                        <h4 class="heading-font text-xl font-semibold mb-2">Lali Cream</h4>
+                        <p class="text-gray-600 mb-3">Wrinkle Lift & Anti-aging solution</p>
+                        <p class="text-sm text-green-600 mb-3">20+ years of popularity</p>
+                        <button onclick="showProductModal('lali-cream')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                            Know More
+                        </button>
+                    </div>
+                    <div class="product-card bg-white rounded-xl p-6 shadow-lg">
+                        <div class="w-full h-48 bg-yellow-100 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-sun text-4xl text-yellow-600"></i>
+                        </div>
+                        <h4 class="heading-font text-xl font-semibold mb-2">Wang Oil & Soap</h4>
+                        <p class="text-gray-600 mb-3">Effective for Face Dark Spots</p>
+                        <p class="text-orange-600 font-semibold mb-3">Cream: ₹350 | Soap: ₹90</p>
+                        <button onclick="showProductModal('wang-oil')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                            Know More
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hair Care Products -->
+            <div class="mb-16">
+                <h3 class="heading-font text-3xl font-semibold text-green-600 mb-8 text-center">Hair Care Products</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="product-card bg-white rounded-xl p-6 shadow-lg">
+                        <div class="w-full h-48 bg-brown-100 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-cut text-4xl text-amber-700"></i>
+                        </div>
+                        <h4 class="heading-font text-xl font-semibold mb-2">Adivasi Hair Oil & Shampoo</h4>
+                        <p class="text-gray-600 mb-3">Complete solution for Hair Fall, Dandruff, and Split Ends</p>
+                        <p class="text-orange-600 font-semibold mb-3">₹349 (200 ml)</p>
+                        <button onclick="showProductModal('adivasi-hair')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                            Know More
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Herbal Soaps -->
+            <div class="mb-16">
+                <h3 class="heading-font text-3xl font-semibold text-green-600 mb-8 text-center">Herbal Soaps</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="product-card bg-white rounded-xl p-6 shadow-lg">
+                        <div class="w-full h-48 bg-orange-100 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-soap text-4xl text-orange-600"></i>
+                        </div>
+                        <h4 class="heading-font text-xl font-semibold mb-2">Kesar Soap</h4>
+                        <p class="text-gray-600 mb-3">For Skin Glow & Fairness</p>
+                        <p class="text-sm text-green-600 mb-3">Ingredients: Saffron Oil, Turmeric</p>
+                        <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mb-3">100% Herbal Product</span>
+                        <br>
+                        <button onclick="showProductModal('kesar-soap')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                            Know More
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body Wellness -->
+            <div class="mb-16">
+                <h3 class="heading-font text-3xl font-semibold text-green-600 mb-8 text-center">Body Wellness</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="product-card bg-white rounded-xl p-6 shadow-lg">
+                        <div class="w-full h-48 bg-red-100 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-heartbeat text-4xl text-red-600"></i>
+                        </div>
+                        <h4 class="heading-font text-xl font-semibold mb-2">Ayurvedic Vata Churna</h4>
+                        <p class="text-gray-600 mb-3">For Joint Pain, Stiffness, and Swelling</p>
+                        <p class="text-green-600 font-semibold mb-3">Visible effect in 3 days</p>
+                        <button onclick="showProductModal('vata-churna')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                            Know More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Order Section -->
+    <section id="order" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="heading-font text-4xl font-bold text-gray-800 mb-4">How to Order</h2>
+                <p class="text-xl text-gray-600">Easy ways to get your Ayurvedic products</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <div class="bg-yellow-50 p-8 rounded-xl">
+                        <h3 class="heading-font text-2xl font-semibold mb-4 text-green-600">Local Ordering Instructions</h3>
+                        <p class="text-gray-600 mb-6">Our products are currently available via offline orders or calls only. Visit our store or contact us directly for personalized service.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-store text-green-600 mr-3"></i>
+                                <span class="font-semibold">Store Address:</span>
+                            </div>
+                            <p class="ml-6 text-gray-600">
+                                Simran Trading Company<br>
+                                Shop No. 3, Near Shani Mandir<br>
+                                Peth Road, Nashik - 03
+                            </p>
+                            
+                            <div class="flex items-center mt-6">
+                                <i class="fas fa-phone text-green-600 mr-3"></i>
+                                <span class="font-semibold">Call to Order:</span>
+                            </div>
+                            <div class="ml-6 space-y-2">
+                                <a href="tel:9730076826" class="block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-center transition-colors">
+                                    📞 9730076826
+                                </a>
+                                <a href="tel:9860617286" class="block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-center transition-colors">
+                                    📞 9860617286
+                                </a>
+                            </div>
+                            
+                            <div class="flex items-center mt-6">
+                                <i class="fab fa-whatsapp text-green-600 mr-3"></i>
+                                <span class="font-semibold">WhatsApp Order:</span>
+                            </div>
+                            <a href="https://wa.me/919730076826?text=Hello, I would like to inquire about your Ayurvedic products" class="ml-6 block bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-center transition-colors">
+                                Order via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <div class="bg-green-50 p-8 rounded-xl h-full">
+                        <h3 class="heading-font text-2xl font-semibold mb-4 text-green-600">Find Our Store</h3>
+                        <div class="bg-gray-200 h-64 rounded-lg mb-4 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-map-marker-alt text-4xl text-green-600 mb-2"></i>
+                                <p class="text-gray-600">Interactive Map</p>
+                                <p class="text-sm text-gray-500">Shop No. 3, Near Shani Mandir, Peth Road, Nashik</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-green-600 mr-3"></i>
+                                <span class="font-semibold">Store Timings:</span>
+                            </div>
+                            <p class="ml-6 text-gray-600">
+                                Monday - Saturday: 9:00 AM - 8:00 PM<br>
+                                Sunday: 10:00 AM - 6:00 PM
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-yellow-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="heading-font text-4xl font-bold text-gray-800 mb-4">Contact Us</h2>
+                <p class="text-xl text-gray-600">Get in touch for any queries or product information</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="heading-font text-2xl font-semibold mb-6 text-green-600">Send us a Message</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Name</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Your Name">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Mobile</label>
+                                <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Your Mobile Number">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Message</label>
+                                <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Your Message"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition-colors">
+                                Send Message
+                            </button>
+                        </form>
+                        <p class="text-sm text-gray-500 mt-4 text-center">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            Demo form - Messages will not be sent
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                        <h3 class="heading-font text-2xl font-semibold mb-6 text-green-600">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-green-600 mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Store Address</h4>
+                                    <p class="text-gray-600">
+                                        Simran Trading Company<br>
+                                        Shop No. 3, Near Shani Mandir<br>
+                                        Peth Road, Nashik - 03
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-phone text-green-600 mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Phone Numbers</h4>
+                                    <p class="text-gray-600">
+                                        <a href="tel:9730076826" class="hover:text-green-600">9730076826</a><br>
+                                        <a href="tel:9860617286" class="hover:text-green-600">9860617286</a>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fab fa-whatsapp text-green-600 mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold mb-1">WhatsApp</h4>
+                                    <a href="https://wa.me/919730076826" class="text-green-600 hover:underline">
+                                        Chat with us on WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-clock text-green-600 mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Store Hours</h4>
+                                    <p class="text-gray-600">
+                                        Mon-Sat: 9:00 AM - 8:00 PM<br>
+                                        Sunday: 10:00 AM - 6:00 PM
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="heading-font text-2xl font-bold mb-4">
+                        <i class="fas fa-leaf mr-2"></i>Simran Trading
+                    </h3>
+                    <p class="text-gray-300 mb-4">
+                        Your trusted partner for authentic Ayurvedic and herbal products in Nashik for over 20 years.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="heading-font text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="#products" class="text-gray-300 hover:text-white">Our Products</a></li>
+                        <li><a href="#order" class="text-gray-300 hover:text-white">How to Order</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="heading-font text-lg font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p><i class="fas fa-phone mr-2"></i>9730076826</p>
+                        <p><i class="fas fa-phone mr-2"></i>9860617286</p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>Peth Road, Nashik - 03</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">
+                    © 2024 Simran Trading Company. All rights reserved. | Trusted Ayurvedic Products Since 2000s
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Modals -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modal-title" class="heading-font text-2xl font-bold"></h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll animations
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(el => {
+                if (isElementInViewport(el)) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('load', handleScrollAnimations);
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-page');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active-page');
+                }
+            });
+        });
+
+        // Scroll to products function
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Product modal functionality
+        const productData = {
+            'jin-sora': {
+                title: 'Jin Sora Ayurvedic Cream',
+                content: `
+                    <div class="space-y-4">
+                        <div class="w-full h-48 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-spa text-6xl text-green-600"></i>
+                        </div>
+                        <p><strong>Use:</strong> Effective treatment for Eczema, Psoriasis, and Itching</p>
+                        <p><strong>Price:</strong> ₹130 (75g)</p>
+                        <p><strong>Benefits:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>Natural relief from skin irritation</li>
+                            <li>Reduces inflammation and redness</li>
+                            <li>Soothes itchy and dry skin</li>
+                            <li>100% Ayurvedic formulation</li>
+                        </ul>
+                        <p><strong>How to Use:</strong> Apply thin layer on affected area 2-3 times daily or as directed by physician.</p>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <p class="text-green-800"><i class="fas fa-leaf mr-2"></i>Made with natural herbs and traditional Ayurvedic ingredients</p>
+                        </div>
+                    </div>
+                `
+            },
+            'lali-cream': {
+                title: 'Lali Cream',
+                content: `
+                    <div class="space-y-4">
+                        <div class="w-full h-48 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-magic text-6xl text-pink-600"></i>
+                        </div>
+                        <p><strong>Use:</strong> Wrinkle Lift & Anti-aging solution</p>
+                        <p><strong>Popularity:</strong> Trusted by customers for 20+ years</p>
+                        <p><strong>Benefits:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>Reduces fine lines and wrinkles</li>
+                            <li>Improves skin elasticity</li>
+                            <li>Natural anti-aging properties</li>
+                            <li>Suitable for all skin types</li>
+                        </ul>
+                        <p><strong>How to Use:</strong> Apply gently on clean face and neck, massage in circular motions. Use twice daily for best results.</p>
+                        <div class="bg-pink-50 p-4 rounded-lg">
+                            <p class="text-pink-800"><i class="fas fa-star mr-2"></i>Customer favorite for over two decades</p>
+                        </div>
+                    </div>
+                `
+            },
+            'wang-oil': {
+                title: 'Wang Oil & Soap',
+                content: `
+                    <div class="space-y-4">
+                        <div class="w-full h-48 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-sun text-6xl text-yellow-600"></i>
+                        </div>
+                        <p><strong>Use:</strong> Effective for Face Dark Spots</p>
+                        <p><strong>Price:</strong> Cream: ₹350 | Soap: ₹90</p>
+                        <p><strong>Benefits:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>Lightens dark spots and blemishes</li>
+                            <li>Evens skin tone</li>
+                            <li>Natural skin brightening</li>
+                            <li>Available in both cream and soap form</li>
+                        </ul>
+                        <p><strong>How to Use:</strong></p>
+                        <p><strong>Cream:</strong> Apply on dark spots twice daily after cleansing</p>
+                        <p><strong>Soap:</strong> Use daily for face wash, gentle massage and rinse</p>
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <p class="text-yellow-800"><i class="fas fa-lightbulb mr-2"></i>Dual action formula for comprehensive dark spot treatment</p>
+                        </div>
+                    </div>
+                `
+            },
+            'adivasi-hair': {
+                title: 'Adivasi Hair Oil & Shampoo',
+                content: `
+                    <div class="space-y-4">
+                        <div class="w-full h-48 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-cut text-6xl text-amber-700"></i>
+                        </div>
+                        <p><strong>Use:</strong> Complete solution for Hair Fall, Dandruff, and Split Ends</p>
+                        <p><strong>Price:</strong> ₹349 (200 ml)</p>
+                        <p><strong>Benefits:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>Reduces hair fall significantly</li>
+                            <li>Eliminates dandruff naturally</li>
+                            <li>Repairs split ends and damaged hair</li>
+                            <li>Promotes healthy hair growth</li>
+                            <li>Made with traditional Adivasi herbs</li>
+                        </ul>
+                        <p><strong>How to Use:</strong> Apply oil to scalp and hair, massage gently. Leave for 2-3 hours or overnight. Wash with the accompanying herbal shampoo.</p>
+                        <div class="bg-amber-50 p-4 rounded-lg">
+                            <p class="text-amber-800"><i class="fas fa-seedling mr-2"></i>Traditional Adivasi formula passed down through generations</p>
+                        </div>
+                    </div>
+                `
+            },
+            'kesar-soap': {
+                title: 'Kesar Soap',
+                content: `
+                    <div class="space-y-4">
+                        <div class="w-full h-48 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-soap text-6xl text-orange-600"></i>
+                        </div>
+                        <p><strong>Use:</strong> For Skin Glow & Fairness</p>
+                        <p><strong>Ingredients:</strong> Saffron Oil, Turmeric, Natural Herbs</p>
+                        <span class="inline-block bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full">100% Herbal Product</span>
+                        <p><strong>Benefits:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>Natural skin brightening with saffron</li>
+                            <li>Anti-bacterial properties of turmeric</li>
+                            <li>Gentle cleansing without harsh chemicals</li>
+                            <li>Suitable for daily use</li>
+                            <li>Improves skin texture and glow</li>
+                        </ul>
+                        <p><strong>How to Use:</strong> Use daily for face and body. Create rich lather, massage gently, and rinse with water.</p>
+                        <div class="bg-orange-50 p-4 rounded-lg">
+                            <p class="text-orange-800"><i class="fas fa-crown mr-2"></i>Enriched with precious saffron for royal skin care</p>
+                        </div>
+                    </div>
+                `
+            },
+            'vata-churna': {
+                title: 'Ayurvedic Vata Churna',
+                content: `
+                    <div class="space-y-4">
+                        <div class="w-full h-48 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-heartbeat text-6xl text-red-600"></i>
+                        </div>
+                        <p><strong>Use:</strong> For Joint Pain, Stiffness, and Swelling</p>
+                        <p><strong>Effectiveness:</strong> Visible effect in 3 days</p>
+                        <p><strong>Benefits:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>Reduces joint pain and inflammation</li>
+                            <li>Improves joint mobility</li>
+                            <li>Reduces stiffness and swelling</li>
+                            <li>Strengthens bones and joints</li>
+                            <li>100% natural Ayurvedic formulation</li>
+                        </ul>
+                        <p><strong>How to Consume:</strong> Take 1 teaspoon with warm water at night before sleep, or as directed by Ayurvedic physician.</p>
+                        <p><strong>Dosage:</strong> Regular use for 21 days recommended for best results</p>
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <p class="text-red-800"><i class="fas fa-clock mr-2"></i>Fast-acting formula - see results in just 3 days</p>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        function showProductModal(productId) {
+            const modal = document.getElementById('product-modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+            
+            if (productData[productId]) {
+                title.textContent = productData[productId].title;
+                body.innerHTML = productData[productId].content;
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('product-modal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('product-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Form submission (demo)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form. Please call us directly at 9730076826 for immediate assistance.');
+        });
+
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            handleScrollAnimations();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'968b6b38a4f947b4',t:'MTc1NDExNTA5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
