@@ -1,0 +1,48 @@
+<section class="page-hero small">
+  <div class="container">
+    <h1>Products Catalog</h1>
+    <p>Explore our Ayurvedic & Herbal range</p>
+  </div>
+</section>
+<section class="content">
+  <div class="container">
+    <div class="category-filter">
+      <a href="/products" class="btn <%= !selectedCategorySlug ? 'active' : '' %>">All</a>
+      <% categories.forEach(c => { %>
+        <a href="/products?category=<%= c.slug %>" class="btn <%= selectedCategorySlug===c.slug ? 'active' : '' %>"><%= (lang==='mr' && c.name_mr) ? c.name_mr : c.name_en %></a>
+      <% }) %>
+    </div>
+
+    <% productsByCategory.forEach(group => { if (!selectedCategorySlug || selectedCategorySlug === group.category.slug) { %>
+      <h2 class="category-title"><%= (lang==='mr' && group.category.name_mr) ? group.category.name_mr : group.category.name_en %></h2>
+      <div class="grid three">
+        <% group.products.forEach(p => { %>
+          <div class="card product">
+            <div class="image" style="background-image:url('<%= p.image_path || '/public/images/placeholder.png' %>');"></div>
+            <div class="card-content">
+              <h3><%= (lang==='mr' && p.name_mr) ? p.name_mr : p.name_en %></h3>
+              <% if (p.benefits_en || p.benefits_mr) { %>
+                <p class="benefits"><%= (lang==='mr' && p.benefits_mr) ? p.benefits_mr : p.benefits_en %></p>
+              <% } %>
+              <% if (p.price) { %><p class="price"><%= p.price %></p><% } %>
+              <div class="actions">
+                <button class="btn outline" data-modal="product" data-id="<%= p.id %>">Know More</button>
+                <a class="btn whatsapp" href="https://wa.me/<%= p.whatsapp_number || res.locals.whatsappNumber %>?text=<%= encodeURIComponent((p.name_en||'Product') + ' - Inquiry') %>" target="_blank" rel="noopener">Order via WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } }) %>
+  </div>
+</section>
+
+<div class="modal" id="product-modal" aria-hidden="true">
+  <div class="modal-overlay" data-close="true"></div>
+  <div class="modal-content">
+    <button class="modal-close" data-close="true">×</button>
+    <div id="modal-body">
+      <p>Loading...</p>
+    </div>
+  </div>
+</div>

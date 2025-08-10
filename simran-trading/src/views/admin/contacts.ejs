@@ -1,0 +1,27 @@
+<section class="content">
+  <div class="container">
+    <h1>Contact Submissions</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Message</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% contacts.forEach(c => { %>
+          <tr>
+            <td><%= c.id %></td>
+            <td><%= c.name %></td>
+            <td><a href="tel:<%= c.phone %>"><%= c.phone %></a></td>
+            <td><%= c.message %></td>
+            <td><%= c.created_at %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</section>

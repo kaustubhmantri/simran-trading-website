@@ -1,0 +1,72 @@
+<section class="content">
+  <div class="container">
+    <h1><%= product ? 'Edit' : 'New' %> Product</h1>
+    <form method="post" action="<%= product ? '/admin/products/' + product.id : '/admin/products' %>" enctype="multipart/form-data">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="grid two">
+        <div>
+          <div class="form-group">
+            <label>Category</label>
+            <select name="category_id" required>
+              <% categories.forEach(c => { %>
+                <option value="<%= c.id %>" <%= product && product.category_id === c.id ? 'selected' : '' %>><%= c.name_en %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Name (EN)</label>
+            <input type="text" name="name_en" value="<%= product?.name_en || '' %>" required>
+          </div>
+          <div class="form-group">
+            <label>Name (MR)</label>
+            <input type="text" name="name_mr" value="<%= product?.name_mr || '' %>">
+          </div>
+          <div class="form-group">
+            <label>Benefits (EN)</label>
+            <textarea name="benefits_en" rows="3"><%= product?.benefits_en || '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Benefits (MR)</label>
+            <textarea name="benefits_mr" rows="3"><%= product?.benefits_mr || '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Ingredients (EN)</label>
+            <textarea name="ingredients_en" rows="3"><%= product?.ingredients_en || '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Ingredients (MR)</label>
+            <textarea name="ingredients_mr" rows="3"><%= product?.ingredients_mr || '' %></textarea>
+          </div>
+        </div>
+        <div>
+          <div class="form-group">
+            <label>Price (optional)</label>
+            <input type="text" name="price" value="<%= product?.price || '' %>">
+          </div>
+          <div class="form-group">
+            <label>WhatsApp Number (optional)</label>
+            <input type="text" name="whatsapp_number" value="<%= product?.whatsapp_number || '' %>">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Display Order</label>
+              <input type="number" name="display_order" value="<%= product?.display_order || 0 %>">
+            </div>
+            <div class="form-group">
+              <label><input type="checkbox" name="is_active" value="1" <%= product ? (product.is_active ? 'checked' : '') : 'checked' %> > Active</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Image</label>
+            <input type="file" name="image" accept="image/*">
+            <% if (product && product.image_path) { %>
+              <div class="preview"><img src="<%= product.image_path %>" width="120"/></div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <button class="btn primary" type="submit">Save</button>
+      <a class="btn" href="/admin/products">Cancel</a>
+    </form>
+  </div>
+</section>

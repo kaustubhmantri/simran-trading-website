@@ -1,0 +1,28 @@
+<header class="site-header">
+  <div class="topbar">
+    <div class="container flex between">
+      <div class="brand"><a href="/">Simran Trading Company</a></div>
+      <div class="contact-mini">
+        <a href="tel:9730076826">9730076826</a> | <a href="tel:9860617286">9860617286</a>
+        <span class="lang">
+          <a href="/set-lang/en" class="<%= lang==='en'?'active':'' %>">EN</a> |
+          <a href="/set-lang/mr" class="<%= lang==='mr'?'active':'' %>">MR</a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar sticky">
+    <div class="container flex between">
+      <ul class="nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/products">Products</a></li>
+        <li><a href="/how-to-order">How to Order</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+      <div class="cta">
+        <a class="btn whatsapp" href="https://wa.me/<%= whatsappNumber %>" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </nav>
+</header>
