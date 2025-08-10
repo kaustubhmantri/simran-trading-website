@@ -1,0 +1,19 @@
+<section class="content">
+  <div class="container">
+    <h1>Dashboard</h1>
+    <div class="grid three">
+      <div class="card stat"><h3>Categories</h3><p><%= catCount %></p></div>
+      <div class="card stat"><h3>Products</h3><p><%= prodCount %></p></div>
+      <div class="card stat"><h3>Contacts</h3><p><%= contactCount %></p></div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="/admin/categories">Manage Categories</a>
+      <a class="btn" href="/admin/products">Manage Products</a>
+      <a class="btn" href="/admin/contacts">View Contacts</a>
+      <form method="post" action="/admin/logout" style="display:inline">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn outline" type="submit">Logout</button>
+      </form>
+    </div>
+  </div>
+</section>

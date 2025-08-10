@@ -1,0 +1,46 @@
+<section class="content">
+  <div class="container">
+    <div class="flex between">
+      <h1>Products</h1>
+      <a class="btn primary" href="/admin/products/new">New Product</a>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Image</th>
+          <th>Name (EN)</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Order</th>
+          <th>Active</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach(p => { %>
+          <tr>
+            <td><%= p.id %></td>
+            <td>
+              <% if (p.image_path) { %>
+                <img src="<%= p.image_path %>" width="50" height="50"/>
+              <% } %>
+            </td>
+            <td><%= p.name_en %></td>
+            <td><%= p.category_name_en %></td>
+            <td><%= p.price || '-' %></td>
+            <td><%= p.display_order %></td>
+            <td><%= p.is_active ? 'Yes' : 'No' %></td>
+            <td>
+              <a class="btn" href="/admin/products/<%= p.id %>/edit">Edit</a>
+              <form method="post" action="/admin/products/<%= p.id %>/delete" style="display:inline">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn outline" type="submit" onclick="return confirm('Delete product?')">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</section>

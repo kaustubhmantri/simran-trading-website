@@ -1,0 +1,39 @@
+<section class="content">
+  <div class="container small">
+    <h1><%= category ? 'Edit' : 'New' %> Category</h1>
+    <form method="post" action="<%= category ? '/admin/categories/' + category.id : '/admin/categories' %>">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="form-group">
+        <label>Name (EN)</label>
+        <input type="text" name="name_en" value="<%= category?.name_en || '' %>" required>
+      </div>
+      <div class="form-group">
+        <label>Name (MR)</label>
+        <input type="text" name="name_mr" value="<%= category?.name_mr || '' %>">
+      </div>
+      <div class="form-group">
+        <label>Slug</label>
+        <input type="text" name="slug" value="<%= category?.slug || '' %>" required>
+      </div>
+      <div class="form-group">
+        <label>Description (EN)</label>
+        <textarea name="description_en" rows="3"><%= category?.description_en || '' %></textarea>
+      </div>
+      <div class="form-group">
+        <label>Description (MR)</label>
+        <textarea name="description_mr" rows="3"><%= category?.description_mr || '' %></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Display Order</label>
+          <input type="number" name="display_order" value="<%= category?.display_order || 0 %>">
+        </div>
+        <div class="form-group">
+          <label><input type="checkbox" name="is_active" value="1" <%= category ? (category.is_active ? 'checked' : '') : 'checked' %> > Active</label>
+        </div>
+      </div>
+      <button class="btn primary" type="submit">Save</button>
+      <a class="btn" href="/admin/categories">Cancel</a>
+    </form>
+  </div>
+</section>

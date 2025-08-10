@@ -1,0 +1,23 @@
+<footer class="site-footer">
+  <div class="container grid two">
+    <div>
+      <h4>Simran Trading Company</h4>
+      <p><%= company.address %></p>
+      <p>
+        <a href="tel:<%= company.phones[0] %>"><%= company.phones[0] %></a>,
+        <a href="tel:<%= company.phones[1] %>"><%= company.phones[1] %></a>
+      </p>
+    </div>
+    <div class="right">
+      <h4>Find Us</h4>
+      <p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Shop%20No%203%2C%20Near%20Shani%20Mandir%2C%20Peth%20Road%2C%20Nashik-03%2C%20Maharashtra" target="_blank" rel="noopener">View on Google Maps</a>
+      </p>
+      <p>&copy; <%= new Date().getFullYear() %> Simran Trading Company</p>
+    </div>
+  </div>
+</footer>
+<div class="sticky-call">
+  <a href="tel:<%= company.phones[0] %>" class="btn call">Call Now</a>
+  <a href="https://wa.me/<%= whatsappNumber %>" class="btn whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+</div>

@@ -1,0 +1,32 @@
+<section class="hero">
+  <div class="hero-bg">
+    <div class="overlay"></div>
+  </div>
+  <div class="container hero-content">
+    <h1><%= heroTagline %></h1>
+    <p class="trust">
+      <span>100% Ayurvedic Products</span>
+      <span>Trusted by Thousands</span>
+      <span>Local Availability in Nashik</span>
+    </p>
+    <a href="/products" class="btn primary">View Product Catalog</a>
+  </div>
+</section>
+
+<section class="home-categories">
+  <div class="container">
+    <h2>Explore Categories</h2>
+    <div class="grid four">
+      <% categories.forEach(c => { %>
+        <a class="card" href="/products?category=<%= c.slug %>">
+          <div class="card-content">
+            <h3><%= (lang==='mr' && c.name_mr) ? c.name_mr : c.name_en %></h3>
+            <p>View products</p>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/why-choose') %>

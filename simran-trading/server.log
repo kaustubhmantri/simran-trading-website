@@ -1,0 +1,84 @@
+[dotenv@17.2.1] injecting env (3) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+[dotenv@17.2.1] injecting env (0) from .env -- tip: 📡 auto-backup env with Radar: https://dotenvx.com/radar
+Simran Trading Company site running on http://localhost:3000
+ReferenceError: /workspace/simran-trading/src/views/layout.ejs:12
+    10| </head>
+    11| <body>
+ >> 12|   <%- include('partials/header') %>
+    13|   <main>
+    14|     <div class="container">
+    15|       <%- include('partials/flash') %>
+
+/workspace/simran-trading/src/views/partials/header.ejs:24
+    22|       </ul>
+    23|       <div class="cta">
+ >> 24|         <a class="btn whatsapp" href="https://wa.me/<%= res.locals.whatsappNumber %>" target="_blank" rel="noopener">WhatsApp</a>
+    25|       </div>
+    26|     </div>
+    27|   </nav>
+
+res is not defined
+    at eval ("/workspace/simran-trading/src/views/partials/header.ejs":18:26)
+    at header (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:703:17)
+    at include (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:701:39)
+    at eval ("/workspace/simran-trading/src/views/layout.ejs":20:17)
+    at layout (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:703:17)
+    at tryHandleCache (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:274:36)
+    at exports.renderFile [as engine] (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:491:10)
+    at View.render (/workspace/simran-trading/node_modules/express/lib/view.js:139:8)
+    at tryRender (/workspace/simran-trading/node_modules/express/lib/application.js:627:10)
+    at Function.render (/workspace/simran-trading/node_modules/express/lib/application.js:574:3)
+ReferenceError: /workspace/simran-trading/src/views/layout.ejs:12
+    10| </head>
+    11| <body>
+ >> 12|   <%- include('partials/header') %>
+    13|   <main>
+    14|     <div class="container">
+    15|       <%- include('partials/flash') %>
+
+/workspace/simran-trading/src/views/partials/header.ejs:24
+    22|       </ul>
+    23|       <div class="cta">
+ >> 24|         <a class="btn whatsapp" href="https://wa.me/<%= res.locals.whatsappNumber %>" target="_blank" rel="noopener">WhatsApp</a>
+    25|       </div>
+    26|     </div>
+    27|   </nav>
+
+res is not defined
+    at eval ("/workspace/simran-trading/src/views/partials/header.ejs":18:26)
+    at header (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:703:17)
+    at include (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:701:39)
+    at eval ("/workspace/simran-trading/src/views/layout.ejs":20:17)
+    at layout (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:703:17)
+    at tryHandleCache (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:274:36)
+    at exports.renderFile [as engine] (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:491:10)
+    at View.render (/workspace/simran-trading/node_modules/express/lib/view.js:139:8)
+    at tryRender (/workspace/simran-trading/node_modules/express/lib/application.js:627:10)
+    at Function.render (/workspace/simran-trading/node_modules/express/lib/application.js:574:3)
+ReferenceError: /workspace/simran-trading/src/views/layout.ejs:12
+    10| </head>
+    11| <body>
+ >> 12|   <%- include('partials/header') %>
+    13|   <main>
+    14|     <div class="container">
+    15|       <%- include('partials/flash') %>
+
+/workspace/simran-trading/src/views/partials/header.ejs:24
+    22|       </ul>
+    23|       <div class="cta">
+ >> 24|         <a class="btn whatsapp" href="https://wa.me/<%= res.locals.whatsappNumber %>" target="_blank" rel="noopener">WhatsApp</a>
+    25|       </div>
+    26|     </div>
+    27|   </nav>
+
+res is not defined
+    at eval ("/workspace/simran-trading/src/views/partials/header.ejs":18:26)
+    at header (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:703:17)
+    at include (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:701:39)
+    at eval ("/workspace/simran-trading/src/views/layout.ejs":20:17)
+    at layout (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:703:17)
+    at tryHandleCache (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:274:36)
+    at exports.renderFile [as engine] (/workspace/simran-trading/node_modules/ejs/lib/ejs.js:491:10)
+    at View.render (/workspace/simran-trading/node_modules/express/lib/view.js:139:8)
+    at tryRender (/workspace/simran-trading/node_modules/express/lib/application.js:627:10)
+    at Function.render (/workspace/simran-trading/node_modules/express/lib/application.js:574:3)
